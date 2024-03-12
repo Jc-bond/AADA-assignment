@@ -31,9 +31,7 @@ void search(char pat[], char txt[], int q)
     // Slide the pattern over text one by one
     for (i = 0; i <= N - M; i++) {
  
-        // Check the hash values of current window of text
-        // and pattern. If the hash values match then only
-        // check for characters one by one
+        // case: Matching hash value
         if (p == t) {
             /* Check for characters one by one */
             for (j = 0; j < M; j++) {
@@ -41,23 +39,18 @@ void search(char pat[], char txt[], int q)
                     break;
                 }
             }
- 
-            // if p == t and pat[0...M-1] = txt[i, i+1,
-            // ...i+M-1]
- 
+  
             if (j == M)
                 cout << "Pattern found at index " << i
                      << endl;
         }
  
-        // Calculate hash value for next window of text:
-        // Remove leading digit, add trailing digit
+        // hash value for next window
         if (i < N - M) {
             t = (d * (t - txt[i] * h) + txt[i + M]) % q;
  
-            // We might get negative value of t, converting
-            // it to positive
-            if (t < 0)
+            
+            if (t < 0)  // -ve t to +ve t
                 t = (t + q);
         }
     }
@@ -68,10 +61,8 @@ int main()
 {
     char txt[] = "abracadabra";
     char pat[] = "ab";
- 
-    // we mod to avoid overflowing of value but we should
-    // take as big q as possible to avoid the collison
-    int q = INT_MAX;
+
+    int q = INT_MAX;  // Taking q max as to avoid collision
  
     // Function Call
     search(pat, txt, q);

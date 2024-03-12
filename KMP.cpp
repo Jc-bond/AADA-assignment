@@ -7,12 +7,9 @@ void KMPSearch(char* pat, char* txt)
 {
     int M = strlen(pat);
     int N = strlen(txt);
- 
-    // create lps[] that will hold the longest prefix suffix
-    // values for pattern
+
     int lps[M];
- 
-    // Preprocess the pattern (calculate lps[] array)
+
     computeLPSArray(pat, M, lps);
  
     int i = 0; // index for txt[]
@@ -27,11 +24,9 @@ void KMPSearch(char* pat, char* txt)
             printf("Found pattern at index %d ", i - j);
             j = lps[j - 1];
         }
- 
-        // mismatch after j matches
+
         else if (i < N && pat[j] != txt[i]) {
-            // Do not match lps[0..lps[j-1]] characters,
-            // they will match anyway
+
             if (j != 0)
                 j = lps[j - 1];
             else
@@ -58,16 +53,12 @@ void computeLPSArray(char* pat, int M, int* lps)
         }
         else // (pat[i] != pat[len])
         {
-            // This is tricky. Consider the example.
-            // AAACAAAA and i = 7. The idea is similar
-            // to search step.
+
             if (len != 0) {
                 len = lps[len - 1];
- 
-                // Also, note that we do not increment
-                // i here
+
             }
-            else // if (len == 0)
+            else 
             {
                 lps[i] = 0;
                 i++;

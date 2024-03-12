@@ -5,7 +5,7 @@
 class Candidate {
 public:
     virtual double evaluateSuccess() const {
-        return -1.0;  // Dummy value, to be overridden by derived classes
+        return -1.0; 
     }
 };
 
