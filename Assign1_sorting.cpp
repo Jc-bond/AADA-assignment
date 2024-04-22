@@ -226,6 +226,6 @@ int main()
 {
     int arr[] = {18,56,27,7,8,4,9,31,81,1};
 
-    bubble_Sort(arr);
+    bubbleSort(arr,10);
     return 0;
 }
